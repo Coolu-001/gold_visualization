@@ -349,7 +349,7 @@ body::after {
 
 .hero-price-value {
   display: block;
-  margin: 0.35rem 0 0.2rem;
+  margin: 0.5rem 0 1rem;
   font-family: var(--font-mono);
   font-size: clamp(2rem, 4.7vw, 3.4rem);
   line-height: 1;
@@ -357,7 +357,7 @@ body::after {
 }
 
 .hero-price-note {
-  font-size: 0.78rem;
+  font-size: 0.9rem;
   color: var(--gold-deep);
 }
 
