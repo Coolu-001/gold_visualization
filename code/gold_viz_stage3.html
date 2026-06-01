@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>黄金为什么涨？</title>
+<script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Lora:ital,wght@0,400;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="gold_viz_stage3.css">
+</head>
+<body>
+
+<!-- ═══ STICKY NAV ═══ -->
+<nav class="top-nav">
+  <div class="nav-inner">
+    <span class="nav-label">黄金价格图解</span>
+    <ul class="nav-links">
+      <li><a href="#intro">导言</a></li>
+      <li><a href="#ch1">一 恐惧</a></li>
+      <li><a href="#ch2">二 对比</a></li>
+      <li><a href="#ch3">三 机制</a></li>
+      <li><a href="#ch4">四 例外</a></li>
+      <li><a href="#ch5">五 2025</a></li>
+      <li><a href="#epilogue">结语</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ═══ HERO ═══ -->
+<section id="intro" class="hero">
+  <div class="page-wrap">
+    <div class="hero-copy">
+      <div class="hero-eyebrow">2004 — 2025 · 数据叙事</div>
+      <h1 class="hero-title">可视化叙事——黄金的<em>涨</em>与<em>跌</em></h1>
+      <p class="hero-subtitle">从真实利率、危机冲击到美元信用，读懂二十年金价叙事。</p>
+      <div class="hero-metrics" aria-label="关键数据">
+        <div class="metric-card">
+          <span class="metric-value">20+ 年</span>
+          <span class="metric-label">月度金价与宏观指标对照</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-value">4000+ USD/oz</span>
+          <span class="metric-label">2025年金价突破</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="gold-orbit"></div>
+      <div class="hero-price-card">
+        <span class="hero-price-label">XAU / USD</span>
+        <strong class="hero-price-value">4163.01</strong>
+        <span class="hero-price-note">正在获取实时价格 · USD/oz</span>
+        <svg class="mini-spark" viewBox="0 0 320 96" preserveAspectRatio="none">
+          <defs>
+            <linearGradient id="sparkGold" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0" stop-color="#e8b95a" stop-opacity="0.38"/>
+              <stop offset="1" stop-color="#e8b95a" stop-opacity="0"/>
+            </linearGradient>
+          </defs>
+          <path d="M0 78 C36 74 50 63 82 67 C122 72 128 42 164 45 C204 49 208 25 242 31 C282 38 290 12 320 10 L320 96 L0 96 Z" fill="url(#sparkGold)"/>
+          <path d="M0 78 C36 74 50 63 82 67 C122 72 128 42 164 45 C204 49 208 25 242 31 C282 38 290 12 320 10" fill="none" stroke="#c8973a" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="signal-card">
+        <span>核心判断</span>
+        <p>金价上涨不只来自"恐惧"，更来自持有现金的真实回报下降，以及对美元信用的再定价。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO CHART + LEAD TEXT -->
+<div class="page-wrap intro-lead">
+  <div class="intro-chart-wrap" aria-hidden="true">
+    <div id="chart-intro"></div>
+    <span class="intro-chart-note">XAU/USD · 2004.01 — 2025.12 · 月度收盘价</span>
+  </div>
+  <div class="lead-text fade-in">
+    <p>
+      2025年，黄金价格突破 <strong>4000 美元/盎司</strong>，一年内上涨超过 40%。
+      身边或许已经有人开始买黄金，或许有人告诉你「乱世买黄金」——但这句话究竟对不对？
+    </p>
+    <p>
+      这份图解尝试给你一个<strong>诚实的答案</strong>。
+      我们会先从直觉出发，再用数据一步步拆解，最终告诉你黄金价格背后真正的逻辑是什么——
+      以及那些「黄金本应该涨却没有涨」的时刻，意味着什么。
+    </p>
+    <p class="lead-hint">↓ 点击左侧标签页，按顺序阅读五个章节</p>
+  </div>
+</div>
+
+<!-- ═══ STORY DECK ═══ -->
+<main class="story-deck" aria-label="黄金价格图解章节">
+  <aside class="story-rail" aria-label="章节切换">
+    <div class="story-rail-title">Story Deck</div>
+    <div class="story-tabs" role="tablist" aria-label="章节">
+      <button class="story-tab active" type="button" data-target="ch1" role="tab" aria-selected="true">
+        <span class="story-tab-num">01</span>
+        <span class="story-tab-text">危机与金价</span>
+      </button>
+      <button class="story-tab" type="button" data-target="ch2" role="tab" aria-selected="false">
+        <span class="story-tab-num">02</span>
+        <span class="story-tab-text">资产对比</span>
+      </button>
+      <button class="story-tab" type="button" data-target="ch3" role="tab" aria-selected="false">
+        <span class="story-tab-num">03</span>
+        <span class="story-tab-text">真实利率</span>
+      </button>
+      <button class="story-tab" type="button" data-target="ch4" role="tab" aria-selected="false">
+        <span class="story-tab-num">04</span>
+        <span class="story-tab-text">反例边界</span>
+      </button>
+      <button class="story-tab" type="button" data-target="ch5" role="tab" aria-selected="false">
+        <span class="story-tab-num">05</span>
+        <span class="story-tab-text">2025 暴涨</span>
+      </button>
+      <button class="story-tab" type="button" data-target="epilogue" role="tab" aria-selected="false">
+        <span class="story-tab-num">06</span>
+        <span class="story-tab-text">结语</span>
+      </button>
+    </div>
+    <div class="story-progress" aria-hidden="true">
+      <span class="story-progress-bar"></span>
+    </div>
+  </aside>
+
+  <div class="story-panels">
+
+<!-- ════════════════════════════════════════════
+     CHAPTER 1 · 危机与金价
+════════════════════════════════════════════ -->
+<section id="ch1" class="viz-section active" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="section-header fade-in">
+      <div class="chapter-num">第一章</div>
+      <h2 class="section-title">每一次危机，黄金都在涨吗？</h2>
+      <p class="section-intro">
+        从直觉出发。把过去二十年里最重大的冲击事件——战争、金融危机、政治动荡——
+        一一标注在金价曲线上。你会发现一个粗略但真实的模式，以及几个令人困惑的例外。
+      </p>
+    </div>
+
+    <!-- 图表 + 事件详情面板 -->
+    <div class="chart-with-panel fade-in">
+      <div class="chart-card chart-card--main">
+        <div class="chart-card-header">
+          <span class="chart-card-title">黄金价格 · 冲击性事件标注</span>
+          <span class="chart-card-range">2004 — 2025</span>
+        </div>
+        <div class="legend">
+          <div class="legend-item">
+            <div class="legend-line" style="background:var(--gold)"></div>
+            黄金现货价（美元/盎司）
+          </div>
+          <div class="legend-item">
+            <div class="legend-dot" style="background:var(--rust);border-radius:2px;transform:rotate(45deg)"></div>
+            冲击性事件（悬停查看详情）
+          </div>
+        </div>
+        <div class="chart-card-body">
+          <div id="chart-ch1" style="height:clamp(260px,38vw,380px)"></div>
+        </div>
+        <p class="chart-caption">
+          <strong>◆ 菱形标注</strong>为9个重大冲击事件。悬停标注点可查看：事件背景、当时金价、事件前后3个月涨跌幅，以及与真实利率的关联解释。
+        </p>
+      </div>
+
+      <!-- 事件详情面板：默认显示引导文字，悬停事件后切换为详情 -->
+      <div class="event-panel" id="event-panel-ch1">
+        <div class="event-panel-default" id="event-panel-default">
+          <div class="event-panel-hint-icon">◆</div>
+          <p class="event-panel-hint">悬停图表上的<br><strong>菱形标注</strong><br>查看事件详情</p>
+        </div>
+        <div class="event-panel-detail" id="event-panel-detail" style="display:none">
+          <div class="epd-tag" id="epd-tag"></div>
+          <div class="epd-title" id="epd-title"></div>
+          <div class="epd-date" id="epd-date"></div>
+          <div class="epd-price-row">
+            <div class="epd-price-item">
+              <span class="epd-price-label">事件当月金价</span>
+              <span class="epd-price-val" id="epd-price"></span>
+            </div>
+            <div class="epd-price-item">
+              <span class="epd-price-label">前3月涨跌</span>
+              <span class="epd-price-val" id="epd-before"></span>
+            </div>
+            <div class="epd-price-item">
+              <span class="epd-price-label">后3月涨跌</span>
+              <span class="epd-price-val" id="epd-after"></span>
+            </div>
+          </div>
+          <div class="epd-tips-row" id="epd-tips-row">
+            <span class="epd-tips-label">当时真实利率</span>
+            <span class="epd-tips-val" id="epd-tips"></span>
+          </div>
+          <div class="epd-narrative" id="epd-narrative"></div>
+          <div class="epd-verdict" id="epd-verdict"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 正文讲解 -->
+    <div class="commentary fade-in">
+      <p>
+        把这条金价曲线看一遍，「乱世买黄金」的直觉似乎成立——
+        2008年金融危机、2011年欧债危机、2020年新冠疫情，每一次动荡之后，金价几乎都走出了一波上涨。
+        这给了很多人一种简单的判断：<strong>世界越乱，黄金越值钱</strong>。
+      </p>
+      <p>
+        但仔细比较几个事件，你会发现这个直觉并不可靠。
+        <strong>2022年2月，俄乌战争爆发</strong>，这是二战以来欧洲最大规模的武装冲突，
+        然而金价仅在事件发生后短暂上涨约4%，随后三个月归零，甚至开始下跌。
+        而<strong>2023年10月以哈冲突</strong>爆发的当月，金价反而下跌了将近2%。
+      </p>
+      <p>
+        同样是战争，结果为何如此不同？难道黄金只对「某些类型」的战争有反应？
+        这个问题的答案，不在战争本身，而在一个我们平时很少关注的数字——
+        它才是真正决定黄金价格走向的幕后推手。
+      </p>
+    </div>
+
+    <!-- 章节结论 -->
+    <div class="chapter-conclusion fade-in">
+      <div class="conclusion-icon">①</div>
+      <p>
+        <strong>本章结论：</strong>危机确实经常推动金价上涨，但这个关系并不稳定。
+        同样的战争，在不同的宏观环境下，对金价的影响可以截然相反。
+        「乱世买黄金」是一个不完整的答案。
+      </p>
+    </div>
+
+    <!-- 过渡引导 -->
+    <div class="chapter-transition fade-in">
+      <span class="transition-arrow">→</span>
+      <p>既然战争不是可靠的解释，那黄金与其他资产相比，到底有什么独特之处？</p>
+      <button class="transition-btn" data-target-idx="1">进入第二章：资产对比 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CHAPTER 2 · 资产对比
+════════════════════════════════════════════ -->
+<section id="ch2" class="viz-section" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="section-header fade-in">
+      <div class="chapter-num">第二章</div>
+      <h2 class="section-title">黄金是特殊的吗？</h2>
+      <p class="section-intro">
+        在寻找深层原因之前，先确认一件事：黄金究竟是不是一种「特殊」的资产？
+        把它和标普500、原油放在同一坐标轴上，寻找它们的「背离时刻」。
+      </p>
+    </div>
+
+    <!-- 多资产对比图 -->
+    <div class="chart-card fade-in">
+      <div class="chart-card-header">
+        <span class="chart-card-title">多资产归一化对比</span>
+        <span class="chart-card-range">2004 — 2025 · 各指标独立归一化至 0–1</span>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-line" style="background:var(--gold)"></div>黄金</div>
+        <div class="legend-item"><div class="legend-line" style="background:var(--blue-slate)"></div>标普500</div>
+        <div class="legend-item"><div class="legend-line" style="background:var(--ink-light)"></div>WTI原油</div>
+      </div>
+      <div class="chart-card-body">
+        <div id="chart-ch2a" style="height:clamp(220px,30vw,300px)"></div>
+      </div>
+      <p class="chart-caption">
+        纵轴为各资产的相对历史位置（0 = 该资产历史最低，1 = 历史最高），消除量纲差异后，走势可直接比较。
+        <strong>金色高亮区域</strong>为两个典型背离时刻：2008年金融危机和2020年新冠冲击。
+      </p>
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        把三条曲线放在一起，最显眼的地方是<strong>2008年9月</strong>：
+        标普500在雷曼破产后的三个月内下跌了将近40%，原油从每桶145美元的历史高位暴跌至40美元，
+        而黄金——先跌了约15%，然后开始持续上涨，用三年时间涨了将近150%。
+      </p>
+      <p>
+        这种「先随大盘跌、再独自涨」的模式是黄金的典型特征。
+        恐慌初期，所有人都在卖出一切换取现金，黄金也不例外——流动性危机面前，没有真正的避风港。
+        但当市场稳定下来，当中央银行开始大规模放水，<strong>黄金是第一个受益的</strong>。
+        这和股市的逻辑完全不同：股市需要公司盈利来支撑，而黄金只需要「货币变便宜」这一个条件。
+      </p>
+      <p>
+        另一个值得注意的时刻是<strong>2022年</strong>：标普500在美联储激进加息的压力下下跌了约20%，
+        原油先涨后跌，而黄金只跌了约15%便企稳。在一个几乎所有资产都受创的环境里，
+        黄金显示出了相对的抗跌性。这不是偶然的。
+      </p>
+    </div>
+
+    <!-- 热力图 -->
+    <div class="chart-card fade-in">
+      <div class="chart-card-header">
+        <span class="chart-card-title">黄金 vs 标普500 · 年度相关系数热力图</span>
+        <span class="chart-card-range">2004 — 2025 · Pearson 相关系数</span>
+      </div>
+      <div class="chart-card-body">
+        <div id="chart-ch2b" style="height:clamp(90px,12vw,130px)"></div>
+      </div>
+      <p class="chart-caption">
+        <strong>深红色</strong>（负值）= 黄金与股市背离，走势相反；
+        <strong>深绿色</strong>（正值）= 同涨同跌。
+        2011年（−0.57）、2013年（−0.77）是背离最强的两年，也是避险逻辑最清晰的时期。
+        悬停色块可查看具体数值。
+      </p>
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        热力图呈现的规律令人意外：<strong>黄金与股市的关系并不稳定</strong>，
+        有时正相关（同涨同跌），有时负相关（背离）。
+        这说明黄金不是简单的「股市反向指标」，它有自己独立的运行逻辑。
+      </p>
+      <p>
+        负相关最强的年份集中在2011–2013年——那正是欧债危机最严重、美国信用评级遭下调的时期，
+        市场对整个西方货币体系的信任降至低点，大量资金从股市流出，直接涌入黄金。
+        这种「逃离纸币资产」的行为，才是黄金真正发光的时刻。
+      </p>
+    </div>
+
+    <div class="chapter-conclusion fade-in">
+      <div class="conclusion-icon">②</div>
+      <p>
+        <strong>本章结论：</strong>黄金确实是特殊的资产——它与股市的关系随环境变化，
+        在货币信用受到质疑时与股市背离，在普通时期则随大势起落。
+        它的独特性不在于「涨得多」，而在于「涨的时机不同」。
+      </p>
+    </div>
+
+    <div class="chapter-transition fade-in">
+      <span class="transition-arrow">→</span>
+      <p>那么，究竟是什么决定了黄金「在什么时候涨」？是时候揭示幕后的机制了。</p>
+      <button class="transition-btn" data-target-idx="2">进入第三章：真实利率机制 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CHAPTER 3 · 真实利率
+════════════════════════════════════════════ -->
+<section id="ch3" class="viz-section" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="section-header fade-in">
+      <div class="chapter-num">第三章</div>
+      <h2 class="section-title">真正推动黄金的，是你看不见的那个利率</h2>
+      <p class="section-intro">
+        前两章建立了直觉，现在来揭示机制。
+        理解这一章需要掌握一个概念——它不难，但金融圈之外很少有人真正讲清楚它。
+      </p>
+    </div>
+
+    <!-- 概念解释框 -->
+    <div class="concept-box fade-in">
+      <div class="concept-box-label">核心概念 · 真实利率</div>
+      <p>
+        想象这样一个场景：银行存款利率是3%，但当年的通货膨胀率是5%。
+        你把10万元存进银行，一年后取出10.3万，但这笔钱的<strong>实际购买力</strong>只相当于原来的97%左右。
+        你的钱「名义上」增加了，「实际上」缩水了。
+      </p>
+      <p>
+        经济学家用一个简单的公式来描述这种现象：
+      </p>
+      <div class="concept-formula">真实利率 ≈ 名义利率 − 通货膨胀率</div>
+      <p>
+        在上面的例子里，真实利率 = 3% − 5% = <strong>−2%</strong>。
+        这意味着把钱放在银行，你每年实际上损失了2%的购买力。
+      </p>
+      <p>
+        这个数字和黄金有什么关系？<strong>黄金没有利息，也没有分红</strong>——
+        持有黄金的机会成本，就是你「本可以获得」的真实回报。
+        当真实利率为正（比如+2%），把钱存银行每年实际赚2%，
+        放弃这个回报去持有黄金就显得很「不划算」。
+        但当真实利率为负（比如−1%），把钱存银行每年实际亏1%，
+        持有什么都没有的黄金反而成了「相对划算」的选择。
+      </p>
+      <p>
+        <strong>这就是黄金价格的底层逻辑：真实利率越低（甚至为负），黄金越受追捧；真实利率越高，黄金越受冷落。</strong>
+      </p>
+    </div>
+
+    <!-- 镜像图 -->
+    <div class="chart-card fade-in">
+      <div class="chart-card-header">
+        <span class="chart-card-title">黄金价格 vs TIPS 真实利率（右轴反转）</span>
+        <span class="chart-card-range">2004 — 2025 · TIPS = 美国10年期通胀保护债券收益率</span>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-line" style="background:var(--gold)"></div>黄金现货价（左轴，美元）</div>
+        <div class="legend-item"><div class="legend-line" style="background:var(--teal);opacity:0.85"></div>TIPS真实利率（右轴，反转显示，%）</div>
+      </div>
+      <div class="chart-card-body">
+        <div id="chart-ch3a" style="height:clamp(240px,34vw,340px)"></div>
+      </div>
+      <p class="chart-caption">
+        右轴（青色）<strong>反转显示</strong>——利率越低，青色线越高，与金价走势形成镜像。
+        四个高亮区域分别对应四段关键印证时期，可悬停查看具体数值。
+      </p>
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        把真实利率和金价画在同一张图上，翻转真实利率的坐标轴——你会看到两条几乎互为镜像的曲线。
+        这种视觉上的冲击感，正是这张图想传达的核心信息。
+      </p>
+      <p>
+        <strong>2008年至2011年</strong>：美联储将利率降至零，随后启动史无前例的量化宽松（QE）。
+        名义利率接近零，通胀预期却在上升，真实利率因此持续下降，一度跌至-1%以下。
+        在这个区间里，金价从约800美元/盎司一路涨到了接近1900美元——涨幅超过130%。
+      </p>
+      <p>
+        <strong>2012年至2015年</strong>：美联储逐步退出QE，市场开始预期加息，
+        真实利率回升。在这个区间里，金价从历史高点跌去了近40%，跌至1050美元附近。
+        许多人在这段时期认为「黄金神话破灭了」，但实际上它只是在对应真实利率的回升。
+      </p>
+      <p>
+        <strong>2022年至2023年</strong>：美联储以40年来最快的速度加息，
+        真实利率从-1%飙升至+2%以上。按照这个逻辑，金价应该大跌。
+        然而实际上，金价只跌了约15%就企稳，并在2024年开始新一轮上涨——
+        这个异常，我们将在第四章解释。
+      </p>
+    </div>
+
+    <!-- Fed vs CPI 图 -->
+    <div class="chart-card fade-in">
+      <div class="chart-card-header">
+        <span class="chart-card-title">美联储利率 vs CPI通胀 · 政策信号标注</span>
+        <span class="chart-card-range">2004 — 2025</span>
+      </div>
+      <div class="legend">
+        <div class="legend-item"><div class="legend-line" style="background:var(--blue-slate)"></div>美联储联邦基金利率（%）</div>
+        <div class="legend-item"><div class="legend-line" style="background:var(--rust);opacity:0.85"></div>CPI同比通胀率（%）</div>
+        <div class="legend-item"><div class="legend-dot" style="background:var(--blue-slate)"></div>政策信号事件</div>
+      </div>
+      <div class="chart-card-body">
+        <div id="chart-ch3b" style="height:clamp(200px,28vw,280px)"></div>
+      </div>
+      <p class="chart-caption">
+        当<strong>蓝线（利率）低于橙线（通胀）</strong>，真实利率为负，是黄金上涨的「肥沃土壤」。
+        悬停可查看当月联邦利率、CPI，以及由此估算的简单真实利率。
+        竖线为9个政策信号事件，悬停可查看标注说明。
+      </p>
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        这张图揭示了「真实利率」是怎么形成的：
+        它是<strong>美联储利率</strong>（蓝线）和<strong>通货膨胀</strong>（橙线）共同作用的结果。
+        2008年后那段时间，蓝线跌落谷底，橙线却维持在2-3%，两者之差（真实利率）持续为负；
+        2022年后，蓝线迅速拉升至5%以上，而橙线也在同期高达8%，但随着通胀下降，两线靠近，真实利率上升。
+      </p>
+      <p>
+        理解了这张图，你就理解了为什么「战争不一定推高黄金」：
+        战争必须先影响通胀预期或利率预期，才能影响真实利率，进而影响黄金。
+        如果一场战争发生在利率快速上升的背景下（比如2022年俄乌战争），
+        <strong>上升的利率会抵消战争带来的避险溢价</strong>，金价自然不会有实质性上涨。
+      </p>
+    </div>
+
+    <div class="chapter-conclusion fade-in">
+      <div class="conclusion-icon">③</div>
+      <p>
+        <strong>本章结论：</strong>推动黄金价格的核心变量是「真实利率」，
+        即名义利率减去通胀后的实际回报。真实利率越低，持有黄金的相对吸引力越高。
+        战争、危机、政策变化——这些事件都只是「触发器」，
+        它们必须通过改变真实利率才能真正影响金价。
+      </p>
+    </div>
+
+    <div class="chapter-transition fade-in">
+      <span class="transition-arrow">→</span>
+      <p>真实利率框架能解释大多数时期，但不是所有时期。接下来看三个让这个框架「失灵」的案例。</p>
+      <button class="transition-btn" data-target-idx="3">进入第四章：反例与边界 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CHAPTER 4 · 反例边界
+════════════════════════════════════════════ -->
+<section id="ch4" class="viz-section" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="section-header fade-in">
+      <div class="chapter-num">第四章</div>
+      <h2 class="section-title">反例与边界：规律不是定律</h2>
+      <p class="section-intro">
+        一个诚实的分析框架，必须承认自己的边界。
+        真实利率理论能解释大多数情况，但历史上有三段时期，它给出了「错误」的预测。
+        了解这三个反例，你对黄金的理解才算完整。
+      </p>
+    </div>
+
+    <!-- 三个反例卡片 -->
+    <div class="counter-grid fade-in">
+
+      <!-- 反例01 -->
+      <div class="counter-card">
+        <div class="counter-card-tag">反例 01 · 2004–2006</div>
+        <div class="counter-card-mini-chart">
+          <div id="chart-c1" style="height:120px"></div>
+        </div>
+        <div class="counter-card-body">
+          <div class="counter-card-title">加息周期里，黄金照样上涨</div>
+          <p class="counter-card-desc">
+            2004年6月至2006年6月，美联储将利率从1%加至5.25%，
+            理论上真实利率上升，金价应该承压。
+            但实际上，黄金在这两年间从约390美元涨至约620美元，<strong>涨幅将近60%</strong>。
+          </p>
+          <p class="counter-card-desc">
+            原因：同期中国和印度的黄金需求出现爆发式增长，两国中产阶级的崛起带来了巨大的实物黄金购买量。
+            这种「新兴市场需求冲击」阶段性地打破了真实利率与金价的关系。
+            <strong>规律不是定律——需求端的结构性变化可以覆盖利率端的影响。</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- 反例02 -->
+      <div class="counter-card">
+        <div class="counter-card-tag">反例 02 · 2022–2023</div>
+        <div class="counter-card-mini-chart">
+          <div id="chart-c2" style="height:120px"></div>
+        </div>
+        <div class="counter-card-body">
+          <div class="counter-card-title">激进加息，金价只跌了15%</div>
+          <p class="counter-card-desc">
+            2022年3月至2023年7月，美联储将利率从0.25%飙升至5.25%，
+            TIPS真实利率从−1%左右升至+2%以上。
+            按历史规律，金价至少应该下跌30%至40%，但实际仅下跌约15%便企稳。
+          </p>
+          <p class="counter-card-desc">
+            原因：2022年俄乌战争后，美国对俄罗斯实施了史无前例的外汇储备冻结——
+            这让全球非西方国家的央行意识到，美元储备并不总是「安全」的。
+            中国、印度、土耳其等国央行开始大规模购入实物黄金，
+            以分散美元储备的风险。这种「去美元化」需求<strong>从供需层面托住了金价底部</strong>，
+            使真实利率的打压效果大打折扣。
+          </p>
+        </div>
+      </div>
+
+      <!-- 反例03 -->
+      <div class="counter-card">
+        <div class="counter-card-tag">反例 03 · 2012–2013</div>
+        <div class="counter-card-mini-chart">
+          <div id="chart-c3" style="height:120px"></div>
+        </div>
+        <div class="counter-card-body">
+          <div class="counter-card-title">QE3启动，金价反而下跌</div>
+          <p class="counter-card-desc">
+            2012年9月，美联储宣布第三轮量化宽松（QE3），且是「无限期、无上限」的史无前例形式，
+            理论上应该大幅压低真实利率，推高金价。
+            然而，金价在QE3公告后不涨反跌，随后跌入长达两年的熊市，最低跌至约1050美元。
+          </p>
+          <p class="counter-card-desc">
+            原因：<strong>市场交易的是预期，而非事件本身</strong>。
+            QE3在宣布前已经被市场充分预期，聪明的资金早已在2011–2012年间建好了黄金多头仓位。
+            当政策落地，「利好兑现」反而触发了大规模止盈卖出。
+            这个「利空出尽」的逻辑在金融市场极为常见：消息宣布的那一刻，往往是趋势的终点而非起点。
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        这三个反例传递一个重要信号：<strong>任何单一因素的分析框架都是不完整的</strong>。
+        真实利率是理解黄金最重要的变量，但不是唯一的变量。
+        新兴市场需求、央行行为、市场预期机制——这些「干扰项」随时可以在特定时期主导金价。
+      </p>
+      <p>
+        更重要的是，这三个反例都有一个共同特征：
+        它们都发生在某种<strong>结构性力量</strong>出现的时候——新兴市场崛起、去美元化浪潮、市场定价机制的预期效应。
+        当结构性力量足够强大，它就可以在一段时间内压过真实利率的影响。
+        而当这股力量消退，真实利率的主导作用又会重新浮现。
+      </p>
+    </div>
+
+    <div class="chapter-conclusion fade-in">
+      <div class="conclusion-icon">④</div>
+      <p>
+        <strong>本章结论：</strong>真实利率是理解金价的最佳单一变量，但需求端的结构性变化
+        （如新兴市场崛起、央行去美元化）和市场预期机制，都可以阶段性地打破这一规律。
+        分析黄金，需要把这三层因素叠加来看。
+      </p>
+    </div>
+
+    <div class="chapter-transition fade-in">
+      <span class="transition-arrow">→</span>
+      <p>有了这套分析框架，现在我们来看2025年这波令所有人震惊的暴涨，究竟发生了什么。</p>
+      <button class="transition-btn" data-target-idx="4">进入第五章：2025年暴涨 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     CHAPTER 5 · 2025
+════════════════════════════════════════════ -->
+<section id="ch5" class="viz-section" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="section-header fade-in">
+      <div class="chapter-num">第五章</div>
+      <h2 class="section-title">2025年的暴涨：新故事，还是旧逻辑的新版本？</h2>
+      <p class="section-intro">
+        用前四章建立的框架来审视2025年：一年内上涨超过40%，突破4000美元——
+        这一次，旧的逻辑还管用吗？还是说，黄金进入了一个全新的时代？
+      </p>
+    </div>
+
+    <div class="chart-card fade-in">
+      <div class="chart-card-header">
+        <span class="chart-card-title">黄金 · TIPS · 近五年聚焦</span>
+        <span class="chart-card-range">2020 — 2025 · 双轴对比，含政策事件标注</span>
+      </div>
+      <div class="chart-card-body">
+        <div id="chart-ch5" style="height:clamp(260px,36vw,360px)"></div>
+      </div>
+      <p class="chart-caption">
+        竖虚线标注五个关键节点。<strong>金色曲线</strong>为金价（左轴），<strong>青色曲线</strong>为TIPS真实利率（右轴反转）。
+        注意2022年之后，两条线的镜像关系出现了明显的偏差——这正是本章要解释的核心问题。
+      </p>
+    </div>
+
+    <div class="commentary fade-in">
+      <p>
+        先看前半段——2020至2022年初，一切如剧本所料。
+        新冠疫情爆发，美联储在2020年3月将利率降至零，随后启动无限量QE，
+        真实利率一路跌至-1%以下，金价随之从1500美元飙升至2089美元的历史新高。
+        教科书级别的真实利率逻辑。
+      </p>
+      <p>
+        然后是2022至2023年的加息周期——金价按逻辑下跌，但幅度比预期小得多（原因见第四章）。
+      </p>
+      <p>
+        真正令人困惑的是<strong>2024至2025年</strong>。
+        美联储在2024年9月开始降息，但真实利率仍然处于+1.5%至+2%的正值区间——
+        这在历史上并不是一个金价大涨的理想环境。
+        然而黄金在2024年全年涨了约27%，在2025年又涨了超过40%，突破了4000美元。
+      </p>
+      <p>
+        这里出现了一个新的变量，或者说，第四章提到的「结构性力量」正在以前所未有的规模发挥作用：
+        <strong>美元信用本身受到了质疑</strong>。
+      </p>
+      <p>
+        2025年，特朗普政府对全球主要贸易伙伴发动了大规模关税战。
+        这不仅引发了贸易层面的摩擦，更让全球投资者重新审视一个更深层的问题：
+        美国国债——长期以来被视为全球最安全资产——是否还足够安全？
+        美元是否还能继续扮演无可替代的全球储备货币角色？
+      </p>
+      <p>
+        在这种背景下，各国央行的去美元化行动进一步加速，散户投资者也开始以黄金作为对冲美元风险的工具。
+        黄金从「真实利率的镜像」，演变为了「美元信用的替代品」。
+        这是一个质的变化——黄金的涨价逻辑，不再只是「持有现金不划算」，
+        而是「<strong>对美元体系本身感到不安全</strong>」。
+      </p>
+    </div>
+
+    <!-- 2025特别说明框 -->
+    <div class="highlight-box fade-in">
+      <div class="highlight-box-label">2025年的新变量</div>
+      <div class="highlight-box-grid">
+        <div class="highlight-item">
+          <div class="highlight-item-head">🏦 央行购金</div>
+          <p>各国央行（尤其是中国、印度、波兰）连续多年净购金，2024–2025年购金量创历史新高。这是供需层面最强的结构性支撑。</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-item-head">📉 美元信用</div>
+          <p>关税战、财政赤字扩张、债务上限争议——多重因素让全球投资者开始对美元的长期地位产生疑虑，资金流向黄金作为对冲。</p>
+        </div>
+        <div class="highlight-item">
+          <div class="highlight-item-head">📊 降息预期</div>
+          <p>美联储2024年9月开启降息周期，市场预期真实利率将进一步下行，提前布局黄金。预期本身就足以推动价格。</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chapter-conclusion fade-in">
+      <div class="conclusion-icon">⑤</div>
+      <p>
+        <strong>本章结论：</strong>2025年的金价暴涨，是旧逻辑（真实利率下行预期）与新变量（美元信用受质疑、央行去美元化）
+        共同作用的结果。这不完全是一个新故事，但加入了一个可能改变黄金长期定价逻辑的新维度。
+      </p>
+    </div>
+
+    <div class="chapter-transition fade-in">
+      <span class="transition-arrow">→</span>
+      <p>分析完了五个章节，最后一个问题：这些对普通人意味着什么？</p>
+      <button class="transition-btn" data-target-idx="5">进入结语 →</button>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════
+     EPILOGUE · 结语
+════════════════════════════════════════════ -->
+<section id="epilogue" class="viz-section" role="tabpanel">
+  <div class="page-wrap">
+    <div class="section-rule"><div class="section-rule-icon"></div></div>
+
+    <div class="epilogue fade-in">
+      <h2 class="epilogue-title">你应该买黄金吗？</h2>
+      <div class="epilogue-body">
+
+        <p>
+          读完这五章，你或许期待一个明确的答案。但诚实的回答是：<strong>这份图解无法告诉你黄金明天会不会涨</strong>。
+          没有任何图表或模型能做到这一点——包括华尔街最昂贵的分析师报告。
+        </p>
+
+        <p>
+          它能告诉你的，是一套观察黄金的方法论：
+        </p>
+
+        <div class="epilogue-framework">
+          <div class="ef-item">
+            <div class="ef-num">1</div>
+            <div class="ef-content">
+              <div class="ef-title">看真实利率方向</div>
+              <p>真实利率（TIPS收益率）是最重要的单一指标。利率下行或进入负值区间，是黄金上涨最稳定的土壤。可在 FRED 网站免费查询 DFII10 系列数据。</p>
+            </div>
+          </div>
+          <div class="ef-item">
+            <div class="ef-num">2</div>
+            <div class="ef-content">
+              <div class="ef-title">看美联储政策信号</div>
+              <p>降息周期开启或市场形成强烈降息预期，往往先于真实利率下降，黄金会提前反应。但注意「预期已price in」的情况——预期落地可能反而是卖出时机。</p>
+            </div>
+          </div>
+          <div class="ef-item">
+            <div class="ef-num">3</div>
+            <div class="ef-content">
+              <div class="ef-title">看央行购金动向</div>
+              <p>全球主要央行净购金量持续处于高位，是一种结构性需求支撑。世界黄金协会（World Gold Council）每季度发布央行购金数据，可免费获取。</p>
+            </div>
+          </div>
+        </div>
+
+        <p>
+          关于「是否应该买黄金」，有一个思考框架可供参考：
+          <strong>黄金是一种对货币体系的对冲，而不是一种生息资产。</strong>
+          它不像债券有利息，不像股票有分红，不像房产有租金。
+          持有黄金的唯一理由，是你认为未来某个时期，货币的实际回报会下降，
+          或者你对货币体系的整体稳定性有所担忧。
+        </p>
+
+        <p>
+          2025年许多人「上车」黄金，背后的心理往往不是基于以上分析，而是「别人在涨，我怕错过」。
+          FOMO（错过恐惧）是金融市场最危险的情绪之一。
+          历史上，每一次资产在短期内大幅上涨后大规模吸引散户入场，
+          往往也是风险最高的时刻。
+        </p>
+
+        <div class="epilogue-kicker">
+          <p>
+            <strong>黄金上涨，通常意味着人们对货币体系失去了一部分信任。</strong>
+            当这种信任被恢复，黄金往往也会回落。
+            2025年的暴涨究竟是信任危机的开始，还是尾声？没有人知道。
+            但至少，你现在知道该看哪些指标了——这比跟风买入要值钱得多。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 数据来源 -->
+    <div class="footer-sources-inline fade-in">
+      <strong>数据来源</strong>
+      黄金现货价：Investing.com · XAU/USD ·
+      TIPS真实利率：FRED · DFII10 ·
+      美联储利率：FRED · FEDFUNDS ·
+      CPI通胀：FRED · CPIAUCSL ·
+      标普500：FRED · SP500 ·
+      WTI原油：EIA · Cushing OK Spot Price ·
+      美元指数：Investing.com · DXY
+      <br><br>
+      本页内容仅供信息参考，不构成任何投资建议。历史数据不代表未来表现。
+    </div>
+  </div>
+</section>
+
+    <div class="deck-controls" aria-label="章节翻页">
+      <button class="deck-button" type="button" data-step="-1">← 上一章</button>
+      <button class="deck-button" type="button" data-step="1">下一章 →</button>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-sources">
+      <strong>数据来源</strong>
+      黄金现货价：Investing.com · XAU/USD<br>
+      TIPS真实利率：FRED · DFII10<br>
+      美联储利率：FRED · FEDFUNDS<br>
+      CPI通胀：FRED · CPIAUCSL<br>
+      标普500：FRED · SP500<br>
+      WTI原油：EIA · Cushing OK Spot Price<br>
+      美元指数：Investing.com · DXY
+    </div>
+    <p class="footer-note">
+      本页内容仅供信息参考，不构成任何投资建议。历史数据不代表未来表现。
+    </p>
+  </div>
+</footer>
+
+<script src="gold_viz_stage3.js"></script>
+</body>
+</html>
