@@ -439,6 +439,11 @@ body::after {
   transform: translateX(calc(-1 * var(--deck-shift)));
 }
 
+/* 幕布动画期间隐藏 story-deck，防止从幕布底部漏出 */
+.story-deck--hidden {
+  visibility: hidden;
+}
+
 .story-rail {
   position: sticky;
   top: 74px;
@@ -686,7 +691,7 @@ body::after {
   font-family: var(--font-mono); font-size: 0.62rem;
   color: var(--ink-light); letter-spacing: 0.1em; text-transform: uppercase;
 }
-.counter-card-mini-chart { height: 120px; padding: 0 0.3rem; }
+.counter-card-mini-chart { height: 130px; padding: 0 0.3rem; }
 .counter-card-body { padding: 0.8rem 1rem; border-top: 1px solid var(--rule); }
 .counter-card-title {
   font-family: var(--font-serif); font-size: 0.88rem;

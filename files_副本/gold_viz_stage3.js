@@ -53,15 +53,65 @@ const SHOCK_EVENTS = [
 ];
 
 const POLICY_EVENTS = [
-  { date:"2004-06", label:"美联储开启加息" },
-  { date:"2008-12", label:"降息至零+QE1" },
-  { date:"2015-12", label:"后危机首次加息" },
-  { date:"2018-12", label:"本轮加息见顶" },
-  { date:"2019-07", label:"预防性降息" },
-  { date:"2020-03", label:"紧急降息+无限QE" },
-  { date:"2022-03", label:"激进加息周期启动" },
-  { date:"2023-07", label:"利率到顶5.25%" },
-  { date:"2024-09", label:"降息周期开启" },
+  { date:"2004-06", label:"美联储开启加息周期",
+    before:-7.6, after:+6.1, tips:2.15,
+    narrative:"美联储从1%开始加息，理论上真实利率上升应压制金价。但实际上金价在随后3个月上涨了6.1%。原因：同期中国和印度黄金需求爆发式增长，新兴市场的结构性需求完全对冲了利率上行的压力。这是「规律不是定律」的第一个证明。",
+    verdict:"加息周期开启，但新兴市场需求逆势托底" },
+  { date:"2008-12", label:"降息至零 + QE1启动",
+    before:+0.6, after:+19.1, tips:2.17,
+    narrative:"联邦基金利率降至0–0.25%，同时宣布购买1.75万亿美元资产，开创现代QE先例。名义利率触及零下限，通胀预期同步升温，真实利率随之大幅下行。这一政策组合成为此后三年黄金大牛市的直接导火索，金价在随后3个月涨近20%，并开启长达两年的上升通道。",
+    verdict:"零利率+QE组合——真实利率转负，黄金牛市正式启动" },
+  { date:"2015-12", label:"后危机时代首次加息",
+    before:-4.8, after:+15.5, tips:0.73,
+    narrative:"美联储七年来首次加息，结束零利率时代。但这次「利空出尽是利好」——市场已在2013–2015年提前消化了加息预期，金价早已下跌逾40%。正式加息落地反而释放了压制，随后3个月金价反弹超15%。这是理解「预期差」逻辑的经典案例：价格交易的是预期，而非事件本身。",
+    verdict:"加息正式落地反成买点——利空已price in，反弹从此开始" },
+  { date:"2018-12", label:"本轮加息周期见顶",
+    before:+3.4, after:+4.9, tips:1.02,
+    narrative:"美联储将利率加至2.25–2.5%后暂停，市场迅速意识到经济无法承受更高利率，开始交易降息预期。金价在见顶后随即走强，2019年全年上涨约18%。这验证了一个规律：加息周期的终点往往也是黄金的起点——因为市场会提前定价接下来的宽松。",
+    verdict:"加息见顶即是黄金起点——市场开始抢跑降息预期" },
+  { date:"2019-07", label:"预防性降息",
+    before:+9.1, after:+5.6, tips:0.31,
+    narrative:"美联储以「贸易摩擦不确定性」为由降息25bp，金价在此前3个月已上涨9.1%（市场提前买入降息预期）。降息正式落地后继续上涨5.6%，说明市场预判后续还有更多降息。TIPS真实利率已接近零，是黄金重新走强的理想土壤。这是「预期先行、事件跟随」逻辑的完美示范。",
+    verdict:"降息预期推动金价，正式降息后继续上行" },
+  { date:"2020-03", label:"紧急降息至零 + 无限QE",
+    before:-0.2, after:+15.1, tips:-0.12,
+    narrative:"疫情冲击下美联储在单月内两次紧急降息，利率重回零，同时宣布无限量QE。TIPS真实利率随即跌至-1%以下，创历史最低。黄金在事件发生前一月基本持平（流动性危机导致恐慌性抛售），但随后3个月涨超15%，并在5个月后突破2000美元。",
+    verdict:"无限QE将真实利率打入深度负值——黄金随即进入快牛" },
+  { date:"2022-03", label:"激进加息周期启动",
+    before:+7.8, after:-4.6, tips:-0.72,
+    narrative:"面对8%以上的通胀，美联储开启40年来最激进的加息周期。金价在事件前3个月因俄乌战争避险上涨7.8%，但加息开启后随即承压，3个月内回落4.6%。真实利率从-1%快速攀升至+2%以上，按历史规律金价应大跌——但实际只跌了约15%便企稳，央行购金的结构性支撑功不可没。",
+    verdict:"激进加息压制金价，但央行购金托住底部" },
+  { date:"2023-07", label:"利率到顶 5.25%",
+    before:-2.4, after:-4.9, tips:1.6,
+    narrative:"联邦基金利率达到本轮峰值5.25–5.5%。见顶前后金价均偏弱，因为市场担心「higher for longer」——利率不仅高，而且会持续很久。但随着通胀数据持续回落，市场在此后数月逐步建立降息预期，金价自2023年底开始加速上行。利率见顶本身不是金价拐点，「预期何时降息」才是。",
+    verdict:"利率见顶不等于金价见底——降息预期形成才是真正催化剂" },
+  { date:"2024-09", label:"降息周期正式开启",
+    before:+8.1, after:+4.5, tips:1.62,
+    narrative:"美联储首次降息50bp，超出市场预期的幅度，开启新一轮宽松周期。黄金在降息预期升温的2024年全年大涨约27%，再创历史新高突破2700美元，事件前3个月已涨8.1%。降息落地后继续上涨4.5%，因为市场预期后续还有更多降息空间，真实利率将进一步下行。",
+    verdict:"降息开启验证长期看多逻辑，金价在预期和现实双重驱动下续涨" },
+];
+
+const STRUCT_EVENTS = [
+  { date:"2004-11", label:"GLD黄金ETF上市",
+    before:+10.0, after:-3.4, tips:1.68,
+    narrative:"全球最大黄金ETF（GLD）在纽约证券交易所上市，普通投资者首次可以像买股票一样持有黄金，无需储存实物。这彻底降低了参与门槛，散户和机构资金大规模入场，黄金的流动性和市场深度质变式提升。事件前3个月金价因中国需求上涨10%，但ETF上市后市场出现获利回吐，短期回落3.4%。从中长期看，GLD的上市是此后二十年黄金牛市不可或缺的结构性基础。",
+    verdict:"ETF开闸降低门槛——散户资金从此能参与黄金投资" },
+  { date:"2009-03", label:"QE1正式启动",
+    before:+19.1, after:+3.4, tips:1.71,
+    narrative:"美联储宣布购买1.75万亿美元资产，开创现代量化宽松先例。事件前3个月金价已上涨19.1%（市场提前定价）。QE1正式落地后继续上涨3.4%，但涨幅明显收窄——大部分预期已price in。此后宽松持续，真实利率长期受压，黄金开启两年大牛市，最终在2011年9月触及1921美元历史高点。",
+    verdict:"QE1建立「印钞推金价」范式——但涨幅大多在预期阶段已完成" },
+  { date:"2010-11", label:"QE2启动",
+    before:+12.5, after:+0.1, tips:0.67,
+    narrative:"美联储宣布额外购买6000亿国债。事件前3个月金价上涨12.5%，市场已大幅提前买入。QE2落地后几乎原地踏步（+0.1%），验证了「预期差」规律：第二次QE的边际效应远低于第一次，市场已习惯宽松，真正的涨幅都在预期形成阶段完成。但宏观背景持续有利，叠加欧债危机，金价在2011年继续冲高至历史顶点。",
+    verdict:"QE2边际效应递减——但欧债危机接力，推动金价冲历史高点" },
+  { date:"2012-09", label:"QE3（无限量宽）启动",
+    before:+9.1, after:-3.0, tips:-0.71,
+    narrative:"美联储宣布「无限期、无上限」购债，力度史无前例。但此时TIPS真实利率已低至-0.71%，黄金的「宽松逻辑」早已充分定价。事件落地后金价不涨反跌3%，随即开启两年熊市。经典的「利好出尽」：聪明资金在QE3宣布前已建好多头仓位，公告日成为集中止盈卖出的时机。这是理解市场预期机制最重要的案例。",
+    verdict:"史上最强QE反而是顶部信号——预期已满，利好出尽即卖出" },
+  { date:"2022-01", label:"央行购金加速（去美元化）",
+    before:+2.0, after:+5.2, tips:-0.69,
+    narrative:"2022年2月俄乌战争爆发后，美国冻结俄罗斯约3000亿美元外汇储备，这一史无前例的「金融武器化」举动震惊全球央行：持有美元储备并非绝对安全。以中国、印度、土耳其、波兰为代表的非西方央行随即开始大规模净购实物黄金，将其作为不依赖任何他国信用的「终极储备」。2022–2024年全球央行购金量连续创历史新高，成为此后金价在高利率环境下仍能走强的核心结构性支撑。",
+    verdict:"去美元化元年——央行购金从对冲工具升级为国家战略储备" },
 ];
 
 /* ── 颜色/工具 ───────────────────────────────────────────────── */
@@ -105,19 +155,45 @@ function initIntroChart() {
   window.addEventListener('resize', () => chart.resize());
 }
 
-/* ── CHART CH1: 金价 + 冲击事件 + 面板联动 ──────────────────── */
+/* ── CHART CH1: 金价 + 三类事件标注 + 面板联动 ──────────────── */
 function initCh1Chart() {
   const el = document.getElementById('chart-ch1');
   if (!el || el._init) return; el._init = true;
   const chart = echarts.init(el, null, { renderer:'svg' });
 
-  const markPoints = SHOCK_EVENTS.map(ev => ({
+  // 冲击性事件：红色菱形 ◆
+  const shockPoints = SHOCK_EVENTS.map(ev => ({
     coord: [di(ev.date), GOLD[di(ev.date)]],
-    name: ev.label,
+    name: ev.label, _type:'shock',
     itemStyle:{ color:C.rust },
     symbolSize:11, symbol:'diamond',
     label:{ show:false },
   }));
+
+  // 结构性事件：青色五边形 ⬠（区分于圆形，视觉更有辨识度）
+  const structPoints = STRUCT_EVENTS.map(ev => ({
+    coord: [di(ev.date), GOLD[di(ev.date)]],
+    name: ev.label, _type:'struct',
+    itemStyle:{ color:C.teal },
+    symbolSize:11, symbol:'roundRect',
+    label:{ show:false },
+  }));
+
+  // 政策信号：蓝色虚线 markLine，悬停可触发面板
+  const policyLines = {
+    symbol:['none','none'], silent:false,
+    lineStyle:{ type:'dashed', width:1.3, opacity:0.6 },
+    label:{
+      show:true, position:'insideEndTop', distance:4,
+      fontFamily:"'JetBrains Mono',monospace", fontSize:8,
+    },
+    data: POLICY_EVENTS.map(ev => ({
+      xAxis: di(ev.date), name: ev.label,
+      lineStyle:{ color:C.slate },
+      label:{ formatter: ev.label, color:C.slate },
+    })),
+    tooltip:{ show:false },
+  };
 
   chart.setOption({
     animation:true, animationDuration:1600,
@@ -126,92 +202,111 @@ function initCh1Chart() {
     xAxis:{
       type:'category', data:DATES, boundaryGap:false,
       axisLine:{ lineStyle:{ color:C.inkFaint } }, axisTick:{ show:false },
-      axisLabel:{ interval:23, fontFamily:"'JetBrains Mono',monospace", fontSize:10, color:C.inkLight, formatter:v=>v.slice(0,4) },
+      axisLabel:{ interval:23, fontFamily:"'JetBrains Mono',monospace", fontSize:10,
+        color:C.inkLight, formatter:v=>v.slice(0,4) },
       splitLine:{ show:false },
     },
     yAxis:{
       type:'value', name:'USD/oz',
-      nameTextStyle:{ fontFamily:"'JetBrains Mono',monospace", fontSize:9.5, color:C.inkFaint, padding:[0,0,0,40] },
-      axisLabel:{ fontFamily:"'JetBrains Mono',monospace", fontSize:9.5, color:C.inkLight, formatter:v=>'$'+v.toLocaleString() },
+      nameTextStyle:{ fontFamily:"'JetBrains Mono',monospace", fontSize:9.5,
+        color:C.inkFaint, padding:[0,0,0,40] },
+      axisLabel:{ fontFamily:"'JetBrains Mono',monospace", fontSize:9.5,
+        color:C.inkLight, formatter:v=>'$'+v.toLocaleString() },
       axisLine:{ show:false }, axisTick:{ show:false },
       splitLine:{ lineStyle:{ color:'rgba(180,155,110,0.15)' } },
     },
     series:[{
       type:'line', data:GOLD, symbol:'none', smooth:0.25, name:'黄金',
-      lineStyle:{ color:C.gold, width:2.5, shadowColor:'rgba(200,151,58,0.2)', shadowBlur:6 },
-      areaStyle:{ color:{ type:'linear',x:0,y:0,x2:0,y2:1,
-        colorStops:[{offset:0,color:'rgba(200,151,58,0.15)'},{offset:1,color:'rgba(200,151,58,0)'}] } },
+      lineStyle:{ color:C.gold, width:2.5,
+        shadowColor:'rgba(200,151,58,0.2)', shadowBlur:6 },
+      areaStyle:{ color:{ type:'linear', x:0, y:0, x2:0, y2:1,
+        colorStops:[{offset:0,color:'rgba(200,151,58,0.15)'},
+                    {offset:1,color:'rgba(200,151,58,0)'}] } },
       markPoint:{
-        data: markPoints,
-        emphasis:{ scale:1.4 },
-        tooltip:{ show:false }, // 用面板替代tooltip
+        data:[...shockPoints, ...structPoints],
+        emphasis:{ scale:1.45 },
+        tooltip:{ show:false },
       },
+      markLine: policyLines,
     }],
-    tooltip:{
-      trigger:'item',
-      ...TT,
-      formatter: p => {
-        // markPoint hover
-        if (p.componentType === 'markPoint') {
-          const ev = SHOCK_EVENTS.find(e => e.label === p.name);
-          if (ev) { updateEventPanel(ev); }
-          return ''; // 面板已更新，不显示tooltip气泡
-        }
-        return '';
-      }
-    },
+    tooltip:{ trigger:'item', ...TT, formatter:()=>'' },
   });
 
-  // 用 mouseover 事件监听 markPoint
+  // 统一事件查找表
+  const ALL_EVENTS = [
+    ...SHOCK_EVENTS.map(e => ({...e, _type:'shock'})),
+    ...STRUCT_EVENTS.map(e => ({...e, _type:'struct'})),
+    ...POLICY_EVENTS.map(e => ({...e, _type:'policy'})),
+  ];
+
   chart.on('mouseover', p => {
-    if (p.componentType === 'markPoint') {
-      const ev = SHOCK_EVENTS.find(e => e.label === p.name);
+    if (p.componentType === 'markPoint' || p.componentType === 'markLine') {
+      const ev = ALL_EVENTS.find(e => e.label === p.name);
       if (ev) updateEventPanel(ev);
-    }
-  });
-  chart.on('mouseout', p => {
-    if (p.componentType === 'markPoint') {
-      // 延迟隐藏，避免面板闪烁
-      setTimeout(() => {
-        // 不自动收起，让用户停留阅读
-      }, 200);
     }
   });
 
   window.addEventListener('resize', () => chart.resize());
 }
 
-/* ── 事件面板更新 ────────────────────────────────────────────── */
+/* ── 事件面板更新（三种类型统一）────────────────────────────── */
 function updateEventPanel(ev) {
-  const defEl    = document.getElementById('event-panel-default');
-  const detEl    = document.getElementById('event-panel-detail');
+  const defEl = document.getElementById('event-panel-default');
+  const detEl = document.getElementById('event-panel-detail');
   if (!defEl || !detEl) return;
 
-  defEl.style.display  = 'none';
-  detEl.style.display  = 'flex';
+  defEl.style.display = 'none';
+  detEl.style.display = 'flex';
 
-  document.getElementById('epd-tag').textContent      = '冲击性事件';
-  document.getElementById('epd-tag').className        = 'epd-tag epd-tag--shock';
-  document.getElementById('epd-title').textContent    = ev.label;
-  document.getElementById('epd-date').textContent     = ev.date + ' · 事件发生月';
+  // ── 类型标签 ──────────────────────────────────────────────────
+  const typeMap = {
+    shock:  { label:'冲击性事件', cls:'epd-tag--shock'  },
+    struct: { label:'结构性事件', cls:'epd-tag--struct' },
+    policy: { label:'政策信号',   cls:'epd-tag--policy' },
+  };
+  const t = typeMap[ev._type] || typeMap.shock;
+  const tagEl = document.getElementById('epd-tag');
+  tagEl.textContent = t.label;
+  tagEl.className   = 'epd-tag ' + t.cls;
 
-  // price
+  // ── 标题 & 日期 ───────────────────────────────────────────────
+  document.getElementById('epd-title').textContent = ev.label;
+  document.getElementById('epd-date').textContent  = ev.date + ' · 事件发生年月';
+
+  // ── 当月金价 ──────────────────────────────────────────────────
   const idx = di(ev.date);
-  document.getElementById('epd-price').textContent    = '$' + (GOLD[idx] || '—').toLocaleString();
-  document.getElementById('epd-price').className      = 'epd-price-val';
+  const priceEl = document.getElementById('epd-price');
+  priceEl.textContent = GOLD[idx] != null
+    ? '$' + Number(GOLD[idx]).toLocaleString() : '—';
+  priceEl.className = 'epd-price-val';
 
-  // before / after
-  const beforeEl = document.getElementById('epd-before');
-  const afterEl  = document.getElementById('epd-after');
-  beforeEl.textContent = signFmt(ev.before);
-  afterEl.textContent  = signFmt(ev.after);
-  beforeEl.className = 'epd-price-val' + (ev.before >= 0 ? ' epd-price-val--up' : ' epd-price-val--down');
-  afterEl.className  = 'epd-price-val' + (ev.after  >= 0 ? ' epd-price-val--up' : ' epd-price-val--down');
+  // ── 前/后3月涨跌 ──────────────────────────────────────────────
+  const beforeEl   = document.getElementById('epd-before');
+  const afterEl    = document.getElementById('epd-after');
+  const priceItems = document.querySelectorAll('#epd-price-row .epd-price-item');
 
-  // TIPS
-  const tipsEl   = document.getElementById('epd-tips');
-  const tipsRow  = document.getElementById('epd-tips-row');
-  if (ev.tips !== undefined && ev.tips !== null) {
+  const hasBefore = ev.before != null;
+  const hasAfter  = ev.after  != null;
+
+  // 显示/隐藏前后涨跌格
+  if (priceItems[1]) priceItems[1].style.display = hasBefore ? '' : 'none';
+  if (priceItems[2]) priceItems[2].style.display = hasAfter  ? '' : 'none';
+
+  if (hasBefore) {
+    beforeEl.textContent = signFmt(ev.before);
+    beforeEl.className   = 'epd-price-val' +
+      (ev.before >= 0 ? ' epd-price-val--up' : ' epd-price-val--down');
+  }
+  if (hasAfter) {
+    afterEl.textContent = signFmt(ev.after);
+    afterEl.className   = 'epd-price-val' +
+      (ev.after >= 0 ? ' epd-price-val--up' : ' epd-price-val--down');
+  }
+
+  // ── TIPS 真实利率 ─────────────────────────────────────────────
+  const tipsEl  = document.getElementById('epd-tips');
+  const tipsRow = document.getElementById('epd-tips-row');
+  if (ev.tips != null) {
     tipsEl.textContent = ev.tips.toFixed(2) + '%';
     tipsEl.className   = 'epd-tips-val' + (ev.tips < 0 ? ' epd-tips-val--neg' : '');
     tipsRow.style.display = 'flex';
@@ -219,8 +314,16 @@ function updateEventPanel(ev) {
     tipsRow.style.display = 'none';
   }
 
-  document.getElementById('epd-narrative').textContent = ev.narrative;
-  document.getElementById('epd-verdict').textContent   = '▎ ' + (ev.verdict || '');
+  // ── 叙事说明 & 结论 ───────────────────────────────────────────
+  const narEl = document.getElementById('epd-narrative');
+  const verEl = document.getElementById('epd-verdict');
+  narEl.textContent = ev.narrative || '';
+  if (ev.verdict) {
+    verEl.textContent  = '▎ ' + ev.verdict;
+    verEl.style.display = 'block';
+  } else {
+    verEl.style.display = 'none';
+  }
 }
 
 /* ── CHART CH2a: 多资产归一化 ───────────────────────────────── */
@@ -584,7 +687,7 @@ function initCh5Chart() {
 
   let activeIdx = 0;
 
-  function syncDeck(idx, scroll=true) {
+  function syncDeck(idx, scroll=false) {
     activeIdx = Math.max(0, Math.min(idx, panels.length-1));
     const activeId = panelIds[activeIdx];
 
@@ -605,22 +708,14 @@ function initCh5Chart() {
     if (scroll) document.querySelector('.story-deck')?.scrollIntoView({behavior:'smooth',block:'start'});
   }
 
-  tabs.forEach((t,i)=>t.addEventListener('click',()=>syncDeck(i)));
-  controls.forEach(b=>b.addEventListener('click',()=>syncDeck(activeIdx+Number(b.dataset.step||0))));
-
-  // 过渡按钮
-  document.querySelectorAll('.transition-btn').forEach(btn=>{
-    btn.addEventListener('click',()=>{
-      const idx = Number(btn.dataset.targetIdx);
-      syncDeck(idx);
-    });
-  });
+  tabs.forEach((t,i)=>t.addEventListener('click',()=>syncDeck(i, true)));
+  controls.forEach(b=>b.addEventListener('click',()=>syncDeck(activeIdx+Number(b.dataset.step||0), true)));
 
   navLinks.forEach(l=>{
     l.addEventListener('click',e=>{
       const target = l.getAttribute('href')?.replace('#','');
       const idx = panelIds.indexOf(target);
-      if (idx>=0) { e.preventDefault(); syncDeck(idx); }
+      if (idx>=0) { e.preventDefault(); syncDeck(idx, true); }
     });
   });
 
@@ -630,6 +725,107 @@ function initCh5Chart() {
   });
 
   syncDeck(0, false);
+})();
+
+
+/* ════════════════════════════════════════════════════════════════
+   CURTAIN SCROLL CONTROLLER
+   驱动 intro-curtain 从屏幕下方滑入覆盖 hero
+════════════════════════════════════════════════════════════════ */
+(function initCurtain() {
+  const driver    = document.getElementById('curtain-driver');
+  const curtain   = document.getElementById('intro-curtain');
+  const hero      = document.querySelector('.hero--sticky');
+  const storyDeck = document.querySelector('.story-deck');
+  if (!driver || !curtain || !hero) return;
+
+  // 初始隐藏 story-deck，防止幕布动画期间从底部漏出
+  if (storyDeck) storyDeck.classList.add('story-deck--hidden');
+
+  const NAV_H = parseFloat(
+    getComputedStyle(document.documentElement)
+      .getPropertyValue('--nav-h') || '68'
+  );
+
+  let settled   = false;   // 幕布是否已经完全落定回归文档流
+  let rafId     = null;
+  let lastScroll = -1;
+
+  /* ── 核心：根据滚动位置计算幕布 translateY ── */
+  function update() {
+    rafId = null;
+
+    const scrollY    = window.scrollY;
+    if (scrollY === lastScroll) return;
+    lastScroll = scrollY;
+
+    // driver 在文档中的位置
+    const driverTop    = driver.offsetTop;           // driver 顶部距文档顶部
+    const driverBottom = driverTop + driver.offsetHeight; // driver 底部
+
+    // 滚动进度：0 = 刚开始进入 driver，1 = driver 底部到达视口顶部
+    const progress = Math.min(1, Math.max(0,
+      (scrollY - driverTop + NAV_H) / driver.offsetHeight
+    ));
+
+    if (settled) {
+      // 已落定：检查是否需要重置（用户向上滚回 hero）
+      if (progress < 0.02) {
+        curtain.classList.remove('curtain--settled');
+        hero.classList.remove('hero--covered');
+        settled = false;
+        // 向上滚回 hero 时重新隐藏 story-deck
+        if (storyDeck) storyDeck.classList.add('story-deck--hidden');
+      }
+      return;
+    }
+
+    // 幕布按自身高度从下方滑入，确保完全覆盖 hero。
+    const ty = (1 - progress) * 100;
+    curtain.style.transform = `translateY(${ty}%)`;
+    hero.classList.remove('hero--covered');
+
+    // hero 轻微暗淡（progress 超过 0.15 时开始）
+    if (progress > 0.15) {
+      hero.classList.add('hero--dimming');
+      const heroOpacity = Math.max(0.35, 1 - (progress - 0.15) * 1.5);
+      hero.style.opacity = heroOpacity;
+    } else {
+      hero.classList.remove('hero--dimming');
+      hero.style.opacity = '';
+    }
+
+    // 完全到位：转为文档流，不再 fixed
+    if (progress >= 0.98) {
+      settled = true;
+      curtain.classList.add('curtain--settled');
+      curtain.style.transform = '';
+      hero.style.opacity = '';
+      hero.classList.add('hero--covered');
+      // 幕布落定后显示 story-deck
+      if (storyDeck) storyDeck.classList.remove('story-deck--hidden');
+    }
+  }
+
+  function onScroll() {
+    if (!rafId) rafId = requestAnimationFrame(update);
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+
+  /* ── 初始状态：若页面刷新时已经滚到幕布区，立即落定 ── */
+  update();
+
+  /* ── resize：重算（窗口大小变化会影响 offsetTop）── */
+  window.addEventListener('resize', () => {
+    settled = false;
+    curtain.classList.remove('curtain--settled');
+    hero.classList.remove('hero--covered');
+    curtain.style.transform = '';
+    lastScroll = -1;
+    if (storyDeck) storyDeck.classList.add('story-deck--hidden');
+    update();
+  });
 })();
 
 /* ── INTRO NAV 激活 ───────────────────────────────────────────── */
