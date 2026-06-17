@@ -637,6 +637,38 @@ body::after {
 .legend-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
 .legend-line { width: 18px; height: 2px; flex-shrink: 0; border-radius: 1px; }
 
+.map-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.9rem;
+  align-items: center;
+  padding: 0.95rem 1.2rem;
+  background: rgba(255,252,245,0.88);
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--ink-light);
+}
+.map-leg-item {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+}
+.map-leg-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(42,34,24,0.08);
+}
+.map-leg-hint {
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  font-style: italic;
+  white-space: nowrap;
+}
+
 /* ═══════════════════════════════════════════════
    CONCEPT BOX
 ═══════════════════════════════════════════════ */
@@ -804,7 +836,7 @@ body::after {
 
 .epd-price-row {
   display: grid;
-  grid-template-columns: repeat(3,1fr);
+  grid-template-columns: repeat(2,1fr);
   gap: 0.1rem;
   border: 1px solid var(--rule);
   border-radius: 2px;
@@ -821,7 +853,7 @@ body::after {
 
 .epd-price-label {
   font-family: var(--font-mono);
-  font-size: 0.56rem;
+  font-size: 0.6rem;
   color: var(--ink-faint);
   letter-spacing: 0.06em;
   text-transform: uppercase;

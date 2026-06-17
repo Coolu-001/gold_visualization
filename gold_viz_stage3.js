@@ -667,6 +667,164 @@ function initCh5Chart() {
   document.querySelectorAll('.fade-in').forEach(el=>obs.observe(el));
 })();
 
+/* ── CHART MAP: 全球央行购金分布（2022–2025）────────────────── */
+const MAP_DATA = [{"name": "China", "value": 358.0, "y2022": 62.2, "y2023": 224.9, "y2024": 44.2, "y2025": 26.7}, {"name": "Poland", "value": 319.4, "y2022": -2.2, "y2023": 130.0, "y2024": 89.5, "y2025": 102.0}, {"name": "Turkey", "value": 219.5, "y2022": 147.5, "y2023": -1.6, "y2024": 47.4, "y2025": 26.1}, {"name": "India", "value": 126.2, "y2022": 33.3, "y2023": 16.2, "y2024": 72.6, "y2025": 4.2}, {"name": "Iraq", "value": 78.2, "y2022": 33.9, "y2023": 12.3, "y2024": 20.1, "y2025": 12.0}, {"name": "Czech Republic", "value": 61.0, "y2022": 1.4, "y2023": 18.7, "y2024": 20.5, "y2025": 20.4}, {"name": "Qatar", "value": 58.5, "y2022": 35.0, "y2023": 9.2, "y2024": 9.9, "y2025": 4.4}, {"name": "Egypt", "value": 48.4, "y2022": 44.7, "y2023": 0.7, "y2024": 0.6, "y2025": 2.5}, {"name": "Brazil", "value": 42.8, "y2022": -0.0, "y2023": 0.0, "y2024": -0.0, "y2025": 42.8}, {"name": "Singapore", "value": 39.8, "y2022": 0.0, "y2023": 76.3, "y2024": -10.1, "y2025": -26.4}, {"name": "Kyrgyzstan", "value": 35.7, "y2022": 6.2, "y2023": 5.2, "y2024": 16.6, "y2025": 7.7}, {"name": "Libya", "value": 30.0, "y2022": 0.0, "y2023": 30.0, "y2024": 0.0, "y2025": 0.0}, {"name": "Uzbekistan", "value": 28.3, "y2022": 33.9, "y2023": -24.6, "y2024": 11.2, "y2025": 7.8}, {"name": "Russian Federation", "value": 24.9, "y2022": 31.1, "y2023": 0.0, "y2024": 0.0, "y2025": -6.2}, {"name": "Ghana", "value": 22.3, "y2022": 0.0, "y2023": 10.8, "y2024": 11.0, "y2025": 0.5}, {"name": "United Arab Emirates", "value": 19.1, "y2022": 19.5, "y2023": -0.5, "y2024": -0.1, "y2025": 0.1}, {"name": "Hungary", "value": 15.5, "y2022": 0.0, "y2023": 0.0, "y2024": 15.5, "y2025": 0.0}, {"name": "Serbia", "value": 15.2, "y2022": 1.1, "y2023": 1.5, "y2024": 8.2, "y2025": 4.4}, {"name": "Georgia", "value": 7.1, "y2022": 0.0, "y2023": 0.0, "y2024": 7.1, "y2025": 0.0}, {"name": "Argentina", "value": 7.0, "y2022": 7.0, "y2023": 0.0, "y2024": -0.0, "y2025": 0.0}, {"name": "Indonesia", "value": 7.0, "y2022": 0.0, "y2023": 0.0, "y2024": 0.0, "y2025": 7.0}, {"name": "Guinea", "value": 6.9, "y2022": 0.0, "y2023": 0.0, "y2024": 0.0, "y2025": 6.9}, {"name": "Jordan", "value": 6.3, "y2022": 4.3, "y2023": 2.4, "y2024": 0.5, "y2025": -0.8}, {"name": "Guatemala", "value": 6.1, "y2022": 0.0, "y2023": 0.0, "y2024": 0.0, "y2025": 6.1}, {"name": "Tajikistan, Rep. of", "value": 5.4, "y2022": 6.5, "y2023": -1.0, "y2024": 0.0, "y2025": 0.0}, {"name": "Cambodia", "value": 4.0, "y2022": 2.1, "y2023": -10.0, "y2024": 3.9, "y2025": 8.0}, {"name": "Zimbabwe", "value": 4.0, "y2022": 0.1, "y2023": 0.5, "y2024": 2.0, "y2025": 1.4}, {"name": "Ireland", "value": 2.5, "y2022": 2.5, "y2023": 0.0, "y2024": 0.0, "y2025": 0.0}, {"name": "Oman", "value": 2.3, "y2022": 1.9, "y2023": 0.5, "y2024": 0.0, "y2025": 0.0}, {"name": "Bulgaria", "value": 2.1, "y2022": 0.0, "y2023": 0.0, "y2024": 0.0, "y2025": 2.1}, {"name": "Slovenia, Rep. of", "value": 1.1, "y2022": 0.0, "y2023": 0.0, "y2024": 0.0, "y2025": 1.1}, {"name": "Albania", "value": 0.9, "y2022": 0.3, "y2023": 0.3, "y2024": 0.0, "y2025": 0.3}, {"name": "Greece", "value": 0.7, "y2022": 0.2, "y2023": 0.2, "y2024": 0.2, "y2025": 0.1}, {"name": "Belarus, Rep. of", "value": 0.6, "y2022": 0.5, "y2023": 0.1, "y2024": -0.1, "y2025": 0.0}, {"name": "Bosnia and Herzegovina", "value": 0.5, "y2022": -1.5, "y2023": 0.0, "y2024": 2.0, "y2025": 0.0}, {"name": "France", "value": 0.5, "y2022": 0.3, "y2023": 0.2, "y2024": 0.0, "y2025": 0.0}, {"name": "Cabo Verde", "value": -1.0, "y2022": 0.0, "y2023": 0.0, "y2024": -1.0, "y2025": 0.0}, {"name": "Mongolia", "value": -1.9, "y2022": -3.2, "y2023": 1.5, "y2024": -0.6, "y2025": 0.5}, {"name": "Sri Lanka", "value": -2.5, "y2022": -2.5, "y2023": 0.0, "y2024": 0.0, "y2025": 0.0}, {"name": "Curacao & St. Maarten", "value": -3.9, "y2022": 0.0, "y2023": 0.0, "y2024": -3.9, "y2025": 0.0}, {"name": "Ecuador", "value": -5.0, "y2022": 2.5, "y2023": -7.5, "y2024": 0.0, "y2025": 0.0}, {"name": "Finland", "value": -5.3, "y2022": 0.0, "y2023": 0.0, "y2024": -5.3, "y2025": 0.0}, {"name": "Germany", "value": -8.8, "y2022": -4.0, "y2023": -2.5, "y2024": -1.1, "y2025": -1.3}, {"name": "Thailand", "value": -9.6, "y2022": 0.0, "y2023": 0.0, "y2024": -9.6, "y2025": 0.0}, {"name": "Philippines", "value": -25.8, "y2022": -1.1, "y2023": 1.3, "y2024": -28.6, "y2025": 2.5}, {"name": "Kazakhstan", "value": -61.3, "y2022": -50.7, "y2023": -57.4, "y2024": -10.2, "y2025": 57.0}];
+
+function initMapChart() {
+  const el = document.getElementById('chart-map');
+  if (!el || el._init) return;
+  el._init = true;
+
+  // 直接加载地图 GeoJSON 并注册到 ECharts
+  fetch('https://cdn.jsdelivr.net/gh/johan/world.geo.json@master/countries.geo.json')
+    .then(resp => {
+      if (!resp.ok) throw new Error(resp.status);
+      return resp.json();
+    })
+    .then(json => {
+      echarts.registerMap('world', json);
+      buildMap(el);
+    })
+    .catch(() => {
+      // 如果网络请求失败，则仍尝试直接渲染，避免整个页面崩溃
+      buildMap(el);
+    });
+}
+
+function buildMap(el) {
+  const chart = echarts.init(el, null, { renderer: 'svg' });
+
+  const maxVal = Math.max(...MAP_DATA.map(d => Math.abs(d.value)));
+
+  // 气泡大小：平方根缩放，保证视觉比例合理
+  function bubbleSize(val) {
+    return Math.max(6, Math.sqrt(Math.abs(val) / maxVal) * 58);
+  }
+
+  // 分买入/卖出两个系列，便于图例区分
+  const buyers  = MAP_DATA.filter(d => d.value >= 0);
+  const sellers = MAP_DATA.filter(d => d.value < 0);
+
+  const C = {
+    gold:    '#c8973a',
+    slate:   '#3d5a80',
+    ink:     '#2a2218',
+    inkMid:  '#4a3f30',
+    inkFaint:'#b8ad9e',
+    cream:   'rgba(255,252,245,0.95)',
+  };
+
+  const TT = {
+    backgroundColor: C.cream,
+    borderColor: 'rgba(200,151,58,0.28)',
+    borderWidth: 1,
+    textStyle: { fontFamily:"'JetBrains Mono','Courier New',monospace", fontSize:11, color:C.inkMid },
+    extraCssText: 'box-shadow:0 4px 16px rgba(42,34,24,0.12);border-radius:3px;',
+  };
+
+  function makeSeries(data, color, name) {
+    return {
+      name,
+      type: 'scatter',
+      coordinateSystem: 'geo',
+      data: data.map(d => ({
+        name: d.name,
+        value: [...(getCoord(d.name) || [0,0]), d.value],
+        _detail: d,
+      })).filter(d => d.value[0] !== 0),
+      symbolSize: d => bubbleSize(d[2]),
+      itemStyle: {
+        color,
+        opacity: 0.82,
+        borderColor: 'rgba(255,255,255,0.5)',
+        borderWidth: 1,
+      },
+      emphasis: {
+        itemStyle: {
+          opacity: 1,
+          borderWidth: 2,
+          borderColor: '#fff',
+          shadowBlur: 12,
+          shadowColor: color,
+        },
+        scale: 1.15,
+      },
+      tooltip: {
+        ...TT,
+        formatter: p => {
+          const d = p.data._detail;
+          const sign = v => v >= 0 ? `<span style="color:${C.gold}">+${v.toFixed(1)}</span>` : `<span style="color:${C.slate}">${v.toFixed(1)}</span>`;
+          const total_color = d.value >= 0 ? C.gold : C.slate;
+          return `<div style="min-width:160px">
+            <div style="font-weight:600;color:${C.ink};margin-bottom:5px">${d.name}</div>
+            <div style="margin-bottom:4px">累计净变化：<b style="color:${total_color}">${d.value >= 0 ? '+' : ''}${d.value.toFixed(1)} 吨</b></div>
+            <div style="border-top:1px solid rgba(42,34,24,0.1);padding-top:4px;margin-top:2px;font-size:10px;line-height:1.8">
+              2022：${sign(d.y2022)} 吨<br/>
+              2023：${sign(d.y2023)} 吨<br/>
+              2024：${sign(d.y2024)} 吨<br/>
+              2025：${sign(d.y2025)} 吨
+            </div>
+          </div>`;
+        }
+      },
+    };
+  }
+
+  chart.setOption({
+    backgroundColor: 'transparent',
+    tooltip: { trigger: 'item' },
+    geo: {
+      map: 'world',
+      roam: true,
+      zoom: 1.15,
+      center: [20, 25],
+      itemStyle: {
+        areaColor: 'rgba(200,175,130,0.1)',
+        borderColor: 'rgba(180,155,110,0.28)',
+        borderWidth: 0.5,
+      },
+      emphasis: {
+        itemStyle: {
+          areaColor: 'rgba(200,151,58,0.08)',
+          borderColor: 'rgba(200,151,58,0.4)',
+        },
+        label: { show: false },
+      },
+      silent: false,
+      scaleLimit: { min: 0.8, max: 6 },
+      label: { show: false },
+    },
+    series: [
+      makeSeries(buyers,  C.gold,  '净买入'),
+      makeSeries(sellers, C.slate, '净卖出'),
+    ],
+  });
+
+  window.addEventListener('resize', () => chart.resize());
+}
+
+/* 国家名 → 经纬度（ECharts world map 坐标）*/
+const COORDS = {
+  'China':[104.1954,35.8617],'Poland':[19.1451,51.9194],'Turkey':[35.2433,38.9637],
+  'India':[78.9629,20.5937],'Iraq':[43.6793,33.2232],'Czech Republic':[15.4749,49.8175],
+  'Qatar':[51.1839,25.3548],'Egypt':[30.8025,26.8206],'Brazil':[-51.9253,-14.2350],
+  'Singapore':[103.8198,1.3521],'Kyrgyzstan':[74.7661,41.2044],'Libya':[17.2283,26.3351],
+  'Uzbekistan':[64.5853,41.3775],'Kazakhstan':[66.9237,48.0196],'Philippines':[121.7740,12.8797],
+  'Thailand':[100.9925,15.8700],'Germany':[10.4515,51.1657],'Finland':[25.7482,61.9241],
+  'Ecuador':[-78.1834,-1.8312],'Russia':[105.3188,61.5240],'United States':[-95.7129,37.0902],
+  'Japan':[138.2529,36.2048],'South Korea':[127.7669,35.9078],'Saudi Arabia':[45.0792,23.8859],
+  'United Arab Emirates':[53.8478,23.4241],'Armenia':[45.0382,40.0691],'Hungary':[19.5033,47.1625],
+  'Mongolia':[103.8467,46.8625],'Pakistan':[69.3451,30.3753],'Serbia':[21.0059,44.0165],
+  'Jordan':[36.2384,30.5852],'Oman':[55.9754,21.4735],'Ghana':[-1.0232,7.9465],
+  'Bolivia':[-64.9910,-16.2902],'Belarus':[27.9534,53.7098],'Cambodia':[104.9910,12.5657],
+  'Tanzania':[34.8888,-6.3690],'Morocco':[-7.0926,31.7917],'Afghanistan':[67.7100,33.9391],
+  'Albania':[20.1683,41.1533],'Algeria':[1.6596,28.0339],'Argentina':[-63.6167,-38.4161],
+};
+
+function getCoord(name) {
+  return COORDS[name] || null;
+}
+
 /* ── STORY DECK + 图表懒加载 ─────────────────────────────────── */
 (function(){
   const panelIds = ['ch1','ch2','ch3','ch4','ch5','epilogue'];
@@ -682,7 +840,7 @@ function initCh5Chart() {
     ch2: ()=>{ initCh2aChart(); initCh2bChart(); },
     ch3: ()=>{ initCh3aChart(); initCh3bChart(); },
     ch4: ()=>{ initCh4Charts(); },
-    ch5: ()=>{ initCh5Chart(); },
+    ch5: ()=>{ initCh5Chart(); initMapChart(); },
   };
 
   let activeIdx = 0;

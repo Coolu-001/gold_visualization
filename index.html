@@ -170,7 +170,7 @@
     <div class="chart-with-panel fade-in">
       <div class="chart-card chart-card--main">
         <div class="chart-card-header">
-          <span class="chart-card-title">黄金价格 · 冲击性事件标注</span>
+          <span class="chart-card-title">黄金价格 · 同期关键事件标注</span>
           <span class="chart-card-range">2004 — 2025</span>
         </div>
         <div class="legend">
@@ -218,11 +218,13 @@
           <div class="epd-tag" id="epd-tag"></div>
           <div class="epd-title" id="epd-title"></div>
           <div class="epd-date" id="epd-date"></div>
+
+          <div class="epd-tips-row" id="epd-tips-row">
+            <span class="epd-price-label">事件当月金价</span>
+            <span class="epd-price-val" id="epd-price"></span>
+          </div>
+
           <div class="epd-price-row" id="epd-price-row">
-            <div class="epd-price-item">
-              <span class="epd-price-label">事件当月金价</span>
-              <span class="epd-price-val" id="epd-price"></span>
-            </div>
             <div class="epd-price-item">
               <span class="epd-price-label">前3月涨跌</span>
               <span class="epd-price-val" id="epd-before"></span>
@@ -743,20 +745,45 @@
       </p>
     </div>
 
+    <!-- 央行购金地图 -->
+    <div class="chart-card fade-in" style="margin-top:2rem">
+      <div class="chart-card-header">
+        <span class="chart-card-title">全球央行购金分布</span>
+        <span class="chart-card-range">2022 — 2025 · 累计净变化（吨）</span>
+      </div>
+      <div class="map-legend" id="map-legend">
+        <div class="map-leg-item">
+          <span class="map-leg-dot" style="background:var(--gold)"></span>净买入
+        </div>
+        <div class="map-leg-item">
+          <span class="map-leg-dot" style="background:var(--blue-slate)"></span>净卖出
+        </div>
+        <div class="map-leg-item map-leg-hint">气泡大小 = 购入量绝对值</div>
+      </div>
+      <div class="chart-card-body" style="padding:0">
+        <div id="chart-map" style="height:clamp(300px,44vw,480px)"></div>
+      </div>
+      <p class="chart-caption">
+        悬停气泡可查看各国2022–2025年分年度购金明细。<strong>买入国家集中在亚洲、中东与东欧</strong>，
+        西欧国家普遍净卖出或持平——这一地理分布与「去美元化』的政治经济逻辑高度吻合。
+        数据来源：世界黄金协会（WGC）。
+      </p>
+    </div>
+
     <!-- 2025特别说明框 -->
     <div class="highlight-box fade-in">
       <div class="highlight-box-label">2025年的新变量</div>
       <div class="highlight-box-grid">
         <div class="highlight-item">
-          <div class="highlight-item-head">🏦 央行购金</div>
+          <div class="highlight-item-head"> 央行购金</div>
           <p>各国央行（尤其是中国、印度、波兰）连续多年净购金，2024–2025年购金量创历史新高。这是供需层面最强的结构性支撑。</p>
         </div>
         <div class="highlight-item">
-          <div class="highlight-item-head">📉 美元信用</div>
+          <div class="highlight-item-head"> 美元信用</div>
           <p>关税战、财政赤字扩张、债务上限争议——多重因素让全球投资者开始对美元的长期地位产生疑虑，资金流向黄金作为对冲。</p>
         </div>
         <div class="highlight-item">
-          <div class="highlight-item-head">📊 降息预期</div>
+          <div class="highlight-item-head"> 降息预期</div>
           <p>美联储2024年9月开启降息周期，市场预期真实利率将进一步下行，提前布局黄金。预期本身就足以推动价格。</p>
         </div>
       </div>
